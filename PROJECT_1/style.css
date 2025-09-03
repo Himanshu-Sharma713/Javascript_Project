@@ -1,38 +1,43 @@
 body {
-    margin: 0;
-    display: flex;
-    flex-direction: column; 
-    /* align-items: center; */
-    /* justify-content: center; */
-    height: 80vh;
-    font-family: sans-serif;
-    background-color: black;
-    color: white;
-    padding-left: 32px;
-  }
-  
-  h1 {
-    font-size: 4rem;
-  }
-  
-  span {
-    color: brown;
-    display: inline-flex;
-    align-items: center;
-  }
-  
-  span::after {
-      content: '';
-      display: inline-block;
-      width: 3px;
-      background-color: brown;
-      margin-left: 4px;
-  }
-  
-  h1 span::after {
-      height: 55px;
-  }
-  
-  h2 span::after {
-      height: 24px;
-  }
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #000000, #1a1a1a, #333333);
+  color: white;
+  overflow: hidden;
+}
+
+.container {
+  text-align: center;
+}
+
+h1 {
+  font-size: 3.5rem;
+  margin: 0;
+}
+
+h2 {
+  font-size: 2rem;
+  margin: 10px 0 0;
+  font-weight: 400;
+}
+
+span {
+  color: #ff6b6b;
+  position: relative;
+}
+
+span::after {
+  content: '|';
+  margin-left: 5px;
+  animation: blink 0.7s infinite;
+  color: #ff6b6b;
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}

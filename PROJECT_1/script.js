@@ -1,44 +1,41 @@
-const span = document.querySelector('h1 span')
-const span2 = document.querySelector('h2 span')
- 
-const wordsList = ['Developer.', 'Coder.', 'Teacher.', 'YouTuber.']
-const wordsList2 = ['Student.', 'Dancer.', 'Singer.', 'Designer.']
+const span1 = document.querySelector(".typing");
+const span2 = document.querySelector(".typing2");
 
-function autoType(wordsList, element, time) {
-  let wordIndex = 0
-  let characterIndex = 0
-  let skipUpdate = 0
-  let reverseType = false
+const wordsList1 = [
+  "Java Developer.",
+  "React Devloper.",
+  "Java Full Stack Developer.",
+  "Software Engineer.",
+];
+const wordsList2 = ["Student.", "Engineer.", "Learner.", "Designer."];
 
-  const intervalId = setInterval(() => {
-    if (skipUpdate) {
-      skipUpdate--
-      return
-    }
+function autoType(words, element, speed = 120, pause = 1000) {
+  let wordIndex = 0;
+  let charIndex = 0;
+  let deleting = false;
 
-    if (!reverseType) {
-      skipUpdate = 2
-      element.innerText = element.innerText + wordsList[wordIndex][characterIndex]
-      characterIndex++
+  function type() {
+    const currentWord = words[wordIndex];
+
+    if (!deleting) {
+      element.textContent = currentWord.slice(0, ++charIndex);
+      if (charIndex === currentWord.length) {
+        deleting = true;
+        setTimeout(type, pause);
+        return;
+      }
     } else {
-      element.innerText = element.innerText.slice(0, element.innerText.length - 1)
-      characterIndex--
+      element.textContent = currentWord.slice(0, --charIndex);
+      if (charIndex === 0) {
+        deleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+      }
     }
+    setTimeout(type, deleting ? speed / 2 : speed);
+  }
 
-    if (characterIndex === wordsList[wordIndex].length) {
-      skipUpdate = 6
-      reverseType = true
-    }
-
-    if (element.innerText.length === 0 && reverseType) {
-      reverseType = false
-      wordIndex++
-    }
-
-    if (wordIndex === wordsList.length) {
-      wordIndex = 0
-    }
-  }, 100)
+  type();
 }
 
-autoType(wordsList2, span)
+autoType(wordsList1, span1);
+autoType(wordsList2, span2);
