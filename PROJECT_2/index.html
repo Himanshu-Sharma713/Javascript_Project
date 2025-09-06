@@ -9,52 +9,40 @@
   <body>
     <div class="main">
       <div class="box">
-        <span id="pass-box">Testing</span>
+        <div class="password-box">
+          <span id="pass-box">Your Password</span>
+          <button id="copy" title="Copy Password">📋</button>
+        </div>
+
+        <div class="strength" id="strength-bar"></div>
+
         <div class="row">
           <div class="left">Password Length</div>
           <div class="right">
-            <input
-              type="number"
-              name=""
-              id="total-char"
-              max="30"
-              min="2"
-              value="10"
-            />
+            <input type="number" id="total-char" max="30" min="2" value="12" />
           </div>
         </div>
+
         <div class="row">
-          <label for="upper-case">
-            <div class="left">Contains Uppercase</div>
-          </label>
-          <div class="right">
-            <input type="checkbox" name="" id="upper-case" checked />
-          </div>
+          <label for="upper-case">Contains Uppercase</label>
+          <input type="checkbox" id="upper-case" checked />
         </div>
+
         <div class="row">
-          <label for="lower-case">
-            <div class="left">Contains Lowercase</div>
-          </label>
-          <div class="right">
-            <input type="checkbox" name="" id="lower-case" />
-          </div>
+          <label for="lower-case">Contains Lowercase</label>
+          <input type="checkbox" id="lower-case" checked />
         </div>
+
         <div class="row">
-          <label for="numbers">
-            <div class="left">Contains Numbers</div>
-          </label>
-          <div class="right">
-            <input type="checkbox" name="" id="numbers" />
-          </div>
+          <label for="numbers">Contains Numbers</label>
+          <input type="checkbox" id="numbers" checked />
         </div>
+
         <div class="row">
-          <label for="symbols">
-            <div class="left">Contains Symbols</div>
-          </label>
-          <div class="right">
-            <input type="checkbox" name="" id="symbols" />
-          </div>
+          <label for="symbols">Contains Symbols</label>
+          <input type="checkbox" id="symbols" checked />
         </div>
+
         <div class="row">
           <button id="btn">Generate</button>
         </div>
