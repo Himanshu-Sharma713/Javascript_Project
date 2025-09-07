@@ -1,19 +1,56 @@
-const getColor = () => { 
-    // Hex Code
-    const randomNumber = Math.floor(Math.random() * 16777215);
-    const randomCode = "#" + randomNumber.toString(16);
-    document.body.style.backgroundColor = randomCode;
-    document.getElementById("color-code").innerText = randomCode;
+// Function to generate random HEX color
+const getRandomColor = () => {
+  const randomNumber = Math.floor(Math.random() * 16777215);
+  return "#" + randomNumber.toString(16).padStart(6, '0');
+};
 
-    navigator.clipboard.writeText(randomCode)
-}
+// Function to create palette
+const generatePalette = () => {
+  const paletteContainer = document.getElementById("palette");
+  paletteContainer.innerHTML = "";
 
-//event call
-document.getElementById("btn").addEventListener(
-    "click",
-    getColor
-)
+  for (let i = 0; i < 5; i++) {
+    const color = getRandomColor();
 
+    // Create color card
+    const colorCard = document.createElement("div");
+    colorCard.classList.add("color-card");
 
-// init call
-getColor(); 
+    // Preview section
+    const colorPreview = document.createElement("div");
+    colorPreview.classList.add("color-preview");
+    colorPreview.style.backgroundColor = color;
+
+    // Info section
+    const colorInfo = document.createElement("div");
+    colorInfo.classList.add("color-info");
+
+    const colorCode = document.createElement("span");
+    colorCode.innerText = color;
+
+    const copyBtn = document.createElement("button");
+    copyBtn.classList.add("copy-btn");
+    copyBtn.innerText = "📋";
+    copyBtn.onclick = () => {
+      navigator.clipboard.writeText(color);
+      copyBtn.innerText = "✅";
+      setTimeout(() => (copyBtn.innerText = "📋"), 1000);
+    };
+
+    colorInfo.appendChild(colorCode);
+    colorInfo.appendChild(copyBtn);
+
+    // Append to card
+    colorCard.appendChild(colorPreview);
+    colorCard.appendChild(colorInfo);
+
+    // Append card to palette
+    paletteContainer.appendChild(colorCard);
+  }
+};
+
+// Event listener
+document.getElementById("generate-btn").addEventListener("click", generatePalette);
+
+// Generate initial palette
+generatePalette();
